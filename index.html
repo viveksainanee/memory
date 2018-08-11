@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hogwarts Memory</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <style>
+        .card{
+            display: inline-block;
+            text-align: center;
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            background-color: lightcyan;
+        }
+
+        .flipping{
+            animation: flip 2s infinite;
+            animation-iteration-count: 1;
+        }
+
+        .flipped{
+
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <h1 class="col-12 m-3">Hogwarts Memory</h1>
+        </div>
+        <div class="row">
+                <div class="col-12 m-3">Welcome to Hogwarts Memory! Click the tiles below and try to match them in the fewest possible clicks. Good luck!             
+                </div>
+        </div>
+        <div class="row">
+            <div id="board" class="col-12 m-3">
+            </div>
+        </div>
+        <div class="row">
+            <div id="score" class="col-12 m-3">
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
