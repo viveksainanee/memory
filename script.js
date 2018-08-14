@@ -1,6 +1,6 @@
 window.onload = function() {
   //board size indicates how many tiles there are
-  var boardsize = 10;
+  var boardsize = 4;
 
   //create new game button
   var newGameButton = document.getElementById('newGameButton');
@@ -11,13 +11,14 @@ window.onload = function() {
   //show previous high score
   var highScoreText = document.getElementById('highScore');
   var highestStored = localStorage.getItem('highScoreNum');
+  console.log(highestStored + 'during setting');
   if (highestStored !== null) {
     highScoreText.innerText = 'High score: ' + highestStored;
   }
 
   //create a new board when user hits New Game
   newGameButton.addEventListener('click', function(event) {
-    boardImages = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5'];
+    boardImages = ['1', '1', '2', '2' /*, '3', '3'  , '4', '5', '4', '5' */];
     var board = document.getElementById('board');
     //clear any board that may have been abandoned
     while (board.firstChild) {
@@ -102,6 +103,7 @@ window.onload = function() {
         ) {
           localStorage.setItem('highScoreNum', score.innerText);
           highScoreText.innerText = 'High score: ' + score.innerText;
+          highestStored = score.innerText;
         }
 
         //show congrats!
