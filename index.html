@@ -2,22 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hogwarts Memory</title>
+    <title>Metro Memory</title>
     <style>
     body { 
-        font-family: sans-serif;
+        background-color: black;
+        text-align: center;
+        font-family: Open Sans;
+        width: 100%;
+        height: 100%;
     }
 
-    .scene {
+    .row {
+        padding: 30px;
+    }
+
+    container {
+        width: 100%;
+        height: 100%;
+    }
+
+    h1{
+        font-family: Ubuntu;
+        font-size: 50px;
+        color: white;
+    }
+
+    #score, #highScore {
+        font-family: Ubuntu;
+        font-size: 30px;
+        color: white;
+    }
+
+    .intro {
+        display: inline-block;
+        color: white;
+        max-width: 500px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    #gamecontrol{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .button{
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    #board{
+        justify-content: center;
+        background-color: #0C2630;
+        margin: 0px 30px;
+    }
+
+    .scene{
         display: inline-block;
         width: 150px;
         height: 150px;
-        border: 1px solid #CCC;
-        margin: 40px 0;
         perspective: 600px;
+        padding: 50px;
     }
 
-    .card {
+    .card{
         width: 100%;
         height: 100%;
         transition: transform 1s;
@@ -38,40 +91,37 @@
         color: white;
         text-align: center;
         font-weight: bold;
-        font-size: 40px;
+        font-size: 0px;
         backface-visibility: hidden;
     }
 
-    .card__face--back {
+    .card__face--back, .completed{
         transform: rotateY(180deg);
     }
-
-    .completed{
-        transform: rotateY(180deg);
-    }
-
 
     </style>
-</head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu" rel="stylesheet"></head>
 <body>
     <div class="container">
         <div class="row">
-            <h1 class="col-12 m-3">
-              Hogwarts Memory
+            <h1>
+              metro memory
             </h1>
         </div>
         <div class="row">
-            <div class="col-12 m-3">
-                Welcome to Hogwarts Memory! Click the tiles below and try to match them in the fewest possible clicks. Good luck!             
+            <div class="intro">
+                Welcome to Metro Memory! Click the tiles below and try to match the metros in the fewest possible clicks. Good luck!             
             </div>
         </div>
-        <div class="row">
-            <div id="board" class="col-12 m-3">
+        <div class="row" id="gamecontrol">
+            <button class="button" id="newGameButton">New Game</button>
+            <div id="score"></div>
         </div>
         <div class="row">
-             SCORE:
-            <div id="score" class="col-12 m-3">
-            </div> 
+            <div id="board"></div>
+        </div>
+        <div class="row">
+                <div id="highScore"></div>
         </div>
     </div>
     <script src="script.js"></script>

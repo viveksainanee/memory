@@ -1,8 +1,34 @@
 window.onload = function() {
-  //create board
-  var board = document.getElementById('board');
-  var boardsize = 6;
-  var boardImages = ['1', '2', '1', '2', '3', '3'];
+  //board size indicates how many tiles there are
+  var boardsize = 10;
+
+  //create new game button
+  var newGameButton = document.getElementById('newGameButton');
+
+  //create timers Array
+  var timersArr = [];
+
+  //show previous high score
+  var highScoreText = document.getElementById('highScore');
+  var highestStored = localStorage.getItem('highScoreNum');
+  if (highestStored !== null) {
+    highScoreText.innerText = 'High score: ' + highestStored;
+  }
+
+  //create a new board when user hits New Game
+  newGameButton.addEventListener('click', function(event) {
+    boardImages = ['1', '2', '3', '4', '5', '1', '2', '3', '4', '5'];
+    var board = document.getElementById('board');
+    //clear any board that may have been abandoned
+    while (board.firstChild) {
+      board.removeChild(board.firstChild);
+    }
+    createCards(boardsize);
+
+    //create score
+    var score = document.getElementById('score');
+    score.innerText = 0;
+  });
 
   function createCards(size) {
     for (var i = 0; i < size; i++) {
@@ -27,6 +53,7 @@ window.onload = function() {
       //pick the picture randomly
       var randomImageIndex = getRandomInt(0, boardImages.length - 1);
       back.innerText = boardImages[randomImageIndex];
+
       boardImages.splice(randomImageIndex, 1);
       back.style.backgroundImage = "url('img/" + back.innerText + '.jpg';
       card.appendChild(back);
@@ -34,15 +61,6 @@ window.onload = function() {
       board.appendChild(scene);
     }
   }
-
-  createCards(boardsize);
-
-  //create score
-  var score = document.getElementById('score');
-  score.innerText = 0;
-
-  //create timers Array
-  var timersArr = [];
 
   //when user opens a card on the board
   board.addEventListener('click', function(event) {
@@ -74,9 +92,24 @@ window.onload = function() {
         currentFlipped[0].setAttribute('class', 'card completed');
         currentFlipped[1].setAttribute('class', 'card completed');
       }
+      //if all cards are completed:
+      var completedCards = document.querySelectorAll('.completed');
+      if (completedCards.length == boardsize) {
+        //create high score
+        if (
+          highestStored == null ||
+          parseInt(highestStored) > parseInt(score.innerText)
+        ) {
+          localStorage.setItem('highScoreNum', score.innerText);
+          highScoreText.innerText = 'High score: ' + score.innerText;
+        }
+
+        //show congrats!
+        score.innerText = 'Your score is: ' + score.innerText + '!';
+      }
     }
 
-    //clear previous timers
+    //clear previous timers (if there's a new click)
     for (var l = 0; l < timersArr.length; l++) {
       clearTimeout(timersArr[l]);
     }
