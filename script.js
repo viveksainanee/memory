@@ -1,6 +1,6 @@
 window.onload = function() {
   //board size indicates how many tiles there are
-  var boardsize = 4;
+  var boardsize = 10;
 
   //create new game button
   var newGameButton = document.getElementById('newGameButton');
@@ -18,7 +18,7 @@ window.onload = function() {
 
   //create a new board when user hits New Game
   newGameButton.addEventListener('click', function(event) {
-    boardImages = ['1', '1', '2', '2' /*, '3', '3'  , '4', '5', '4', '5' */];
+    boardImages = ['1', '1', '2', '2', '3', '3', '4', '4', '5', '5'];
     var board = document.getElementById('board');
     //clear any board that may have been abandoned
     while (board.firstChild) {
